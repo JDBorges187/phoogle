@@ -7,12 +7,12 @@ photo_routes = Blueprint('photos', __name__)
 
 
 @photo_routes.route('/')
-@login_required
+@login_required #tried w & w/o
 def all_photos():
     if current_user.is_authenticated:
-        ud = current_user.to_dict()
-        user_id = ud['id']
-        photos = Photo.query.filter(Photo.ownerId == user_id).all()
+        # ud = current_user.to_dict()
+        # user_id = current_user.id
+        photos = current_user.photos #Photo.query.filter(Photo.ownerId == user_id).all()
         return {"photos": [photo.to_dict() for photo in photos]}
     return {'errors': ['Unauthorized']}, 401
 

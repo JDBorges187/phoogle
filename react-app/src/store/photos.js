@@ -11,8 +11,9 @@ export const loadPhotos = (photos) => ({
 
 //thunks
 export const getPhotos = () => async (dispatch) => {
-    const res = await fetch("/api/photos")
-
+    const res = await fetch("/api/photos/")
+    console.log(res)
+    
     if (res.ok) {
         const photos = await res.json()
         dispatch(loadPhotos(photos))
