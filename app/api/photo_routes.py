@@ -20,6 +20,7 @@ def all_photos():
 @login_required
 def add_photos():
     form = PhotoForm()
-
-    print(request.get_json())
-    return {"message": "received"}
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit:
+        return {"photos": "form_submitted"}
+    return {'errors': ['Unauthorized']}, 401
