@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar/index";
+import PhotoGrid from "./components/Photos";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
@@ -42,7 +43,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} >
-          <h1>My Home Page</h1>
+          <PhotoGrid />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
