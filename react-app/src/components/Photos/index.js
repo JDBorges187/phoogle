@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPhotos } from "../../store/photos";
+import PhotoForm from "./PhotoForm";
 
 
 function PhotoGrid() {
@@ -18,6 +19,7 @@ function PhotoGrid() {
 
     return (
         <div className="main-photos">
+            <PhotoForm />
             <h1>Photos</h1>
             <p>{JSON.stringify(photos)}</p>
         </div>
