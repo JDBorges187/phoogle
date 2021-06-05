@@ -19,7 +19,7 @@ const PhotoForm = () => {
 
   const updatePhoto = (e) => {
     setPhotoUrl(e.target.value);
-  };
+  }; 
 
   return (
     <form onSubmit={onUpload}>
