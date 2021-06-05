@@ -1,10 +1,15 @@
 //constants
 const LOAD_PHOTOS = "photos/LOAD_PHOTOS"
-
+const ADD_PHOTO = "photos/ADD_PHOTO"
 //actions
 export const loadPhotos = (photos) => ({
     type: LOAD_PHOTOS,
     payload: photos
+})
+
+export const addPhoto = (photo) => ({
+    type: ADD_PHOTO,
+    payload: photo
 })
 
 
@@ -33,11 +38,9 @@ export const uploadPhoto = (photoUrl) => async (dispatch) => {
 
     if (res.ok) {
         const data = await res.json()
+        dispatch(addPhoto(data))
 
-        if (data.errors){
-            dispatch(loadPhotos(data))
-            return data
-        }
+
 
     }
 
@@ -46,9 +49,7 @@ export const uploadPhoto = (photoUrl) => async (dispatch) => {
 
 //initial state
 
-const initialState = {
-    list: null
-}
+const initialState = {}
 
 
 //reducer
@@ -57,7 +58,9 @@ export default (state = initialState, { type, payload }) => {
     switch (type) {
 
         case LOAD_PHOTOS:
-            return { ...state, list: [...payload.photos] }
+            return { ...state, ...payload.photos }
+        case ADD_PHOTO:
+            return { ...state, ...payload.photo }
 
         default:
             return state
