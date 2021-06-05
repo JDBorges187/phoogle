@@ -8,7 +8,7 @@ import PhotoForm from "./PhotoForm";
 function PhotoGrid() {
     const photos = useSelector(state => state.photos)
     const dispatch = useDispatch()
-    
+
     useEffect(() => {
         dispatch(getPhotos())
     }, [dispatch])
@@ -21,7 +21,11 @@ function PhotoGrid() {
         <div className="main-photos">
             <PhotoForm />
             <h1>Photos</h1>
-            <p>{JSON.stringify(photos)}</p>
+            {Object.values(photos).map((photo, i) => {
+                return (
+                    <img key={i} src={photo.photoUrl} />
+                )
+            })}
         </div>
     )
 }
