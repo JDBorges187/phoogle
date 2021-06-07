@@ -20,14 +20,14 @@ def all_albums():
 @album_routes.route('/', methods=['POST'])
 @login_required
 def add_album(): #TODO Update for New Albums
-    form = PhotoForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit:
-        photo = Photo(
-            owner=current_user,
-            photo_url=form.data['photoUrl']
-        )
-        db.session.add(photo)
-        db.session.commit()
-        return {"photo": [photo.to_dict()]}
+    # form = PhotoForm()
+    # form['csrf_token'].data = request.cookies['csrf_token']
+    # if form.validate_on_submit:
+    #     photo = Photo(
+    #         owner=current_user,
+    #         photo_url=form.data['photoUrl']
+    #     )
+        # db.session.add(photo)
+        # db.session.commit()
+        # return {"photo": [photo.to_dict()]}
     return {'errors': ['Unauthorized']}, 401
