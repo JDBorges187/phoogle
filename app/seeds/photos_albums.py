@@ -7,15 +7,15 @@ def seed_albums():
 
     photo1 = Photo(
         owner=user,
-        photo_url="test_photo_1"
+        photo_url="https://images.unsplash.com/photo-1622496030981-e8377ce1ecdd"
     )
     photo2 = Photo(
         owner=user,
-        photo_url="test_photo_2"
+        photo_url="https://images.unsplash.com/photo-1623081699744-31383b4c2754"
     )
     photo3 = Photo(
         owner=user,
-        photo_url="test_photo_3"
+        photo_url="https://images.unsplash.com/photo-1623071407872-12fe981d90b7"
     )
     db.session.add(photo1)
     db.session.add(photo2)
@@ -28,7 +28,7 @@ def seed_albums():
     album1.photos.append(photo1)
     album1.photos.append(photo2)
     album2 = Album(
-        name="Album 1",
+        name="Album 2",
         owner=user
     )
     album2.photos.append(photo2)
