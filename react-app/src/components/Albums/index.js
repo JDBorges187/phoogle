@@ -1,0 +1,13 @@
+import React from 'react'
+
+function Albums() {
+    return (
+        <div>
+            <h1>Albums</h1>
+            <div>Album 1</div>
+            <div>Album 2</div>
+        </div>
+    )
+}
+
+export default Album
