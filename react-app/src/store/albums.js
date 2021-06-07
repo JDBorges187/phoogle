@@ -17,11 +17,11 @@ export const addAlbum = (album) => ({
 //thunks
 export const getAlbums = () => async(dispatch) => {
     const res = await fetch("/api/albums/")
-    console.log(res)
 
     if (res.ok) {
         const albums = await res.json()
         dispatch(loadAlbums(albums))
+        return albums
     }
 }
 
@@ -53,9 +53,9 @@ export default (state = initialState, { type, payload }) => {
     switch (type) {
 
         case LOAD_ALBUMS:
-            return {...state, ...payload.photos }
+            return {...state, ...payload.albums }
         case ADD_ALBUM:
-            return {...state, ...payload.photo }
+            return {...state, ...payload.album }
 
         default:
             return state
