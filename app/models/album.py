@@ -1,5 +1,6 @@
 import datetime
 from .db import db
+from .album_photo import album_photos
 
 
 class Album(db.Model):
@@ -14,11 +15,18 @@ class Album(db.Model):
 
     owner = db.relationship("User", back_populates="albums")
     photos = db.relationship("Photo",
-                             secondary="AlbumPhoto",
-                             primaryjoin="albums.id == albumphotos.album_id",
-                             secondaryjoin="albumphotos.photo_id == photos.id",
-                             viewonly=True
-                             )
+                             secondary=album_photos)
+    # photos = db.relationship("Photo",
+    #                          secondary="AlbumPhoto",
+    #                          primaryjoin="albums.id == albumphotos.album_id",
+    #                          secondaryjoin="albumphotos.photo_id == photos.id",
+    #                          viewonly=True
+    #                          )
+    # album_photos = db.relationship("AlbumPhoto")
+
+    # @property
+    # def photos(self):
+    #     return [album_photo.photo for album_photo in self.album_photos]
 
     def to_dict(self):
         return {

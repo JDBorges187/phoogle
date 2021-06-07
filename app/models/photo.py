@@ -1,5 +1,6 @@
 import datetime
 from .db import db
+from .album_photo import album_photos
 
 class Photo(db.Model):
   __tablename__ = 'photos'
@@ -10,6 +11,7 @@ class Photo(db.Model):
   date_created = db.Column(db.DateTime, default=datetime.datetime.now, nullable=False)
 
   owner = db.relationship("User", back_populates="photos")
+  albums = db.relationship("Album", secondary=album_photos)
 
   def to_dict(self):
     return {
