@@ -9,7 +9,12 @@ const NavBar = () => {
       <ul>
         <li>
           <NavLink to="/" exact={true} activeClassName="active">
-            Home
+            Photos
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/albums" exact={true} activeClassName="active">
+            Albums
           </NavLink>
         </li>
         <li>
