@@ -70,6 +70,7 @@ export const authenticate = () => async (dispatch) => {
       dispatch(setUser(data));
       return data
     }
+    
     return {}
   };
   

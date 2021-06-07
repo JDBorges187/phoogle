@@ -8,7 +8,7 @@ const DemoButton = () => {
     dispatch(loginDemoUser());
   };
 
-  return <button onClick={onDemoButton}>Logout</button>;
+  return <button onClick={onDemoButton}>Demo</button>;
 };
 
 export default DemoButton;
