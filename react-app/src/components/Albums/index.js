@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Albums() {
+function AlbumsList() {
     return (
         <div>
             <h1>Albums</h1>
@@ -10,4 +10,4 @@ function Albums() {
     )
 }
 
-export default Album
+export default AlbumsList
