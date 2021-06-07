@@ -18,8 +18,11 @@ function AlbumsList() {
     return (
         <div>
             <h1>Albums</h1>
-            <div>Album 1</div>
-            <div>Album 2</div>
+            {Object.values(albums).map((album,i)=>{
+                return (
+                    <div key={i} className="album-cover">{album.name}</div>
+                )
+            })}
         </div>
     )
 }
