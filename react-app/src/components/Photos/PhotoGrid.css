@@ -1,0 +1,12 @@
+.photo-grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.photo-grid img {
+    max-width: 200px;
+    /* change the way */
+    height: 100%;
+    /* this grid looks */
+    padding: 10px;
+}
