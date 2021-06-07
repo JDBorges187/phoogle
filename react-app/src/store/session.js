@@ -58,6 +58,20 @@ export const authenticate = () => async (dispatch) => {
     dispatch(removeUser());
   };
   
+  export const loginDemoUser = () => async (dispatch) => {
+    const response = await fetch("/api/auth/demo", {
+      headers: {
+        "Content-Type": "application/json",
+      }
+    });
+    
+    if (response.ok){
+      const data = await response.json();
+      dispatch(setUser(data));
+      return data
+    }
+    return {}
+  };
   
   export const signUp = (username, email, password) => async (dispatch)  => {
     const response = await fetch("/api/auth/signup", {
