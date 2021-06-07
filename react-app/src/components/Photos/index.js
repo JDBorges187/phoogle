@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPhotos } from "../../store/photos";
 import PhotoForm from "./PhotoForm";
+import "./PhotoGrid.css"
 
 
 function PhotoGrid() {
@@ -21,11 +22,13 @@ function PhotoGrid() {
         <div className="main-photos">
             <PhotoForm />
             <h1>Photos</h1>
-            {Object.values(photos).map((photo, i) => {
-                return (
-                    <img key={i} src={photo.photoUrl} />
-                )
-            })}
+            <div className="photo-grid">
+                {Object.values(photos).map((photo, i) => {
+                    return (
+                        <img key={i} src={photo.photoUrl} />
+                    )
+                })}
+            </div>
         </div>
     )
 }
