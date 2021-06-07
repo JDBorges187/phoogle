@@ -59,11 +59,7 @@ export const authenticate = () => async (dispatch) => {
   };
   
   export const loginDemoUser = () => async (dispatch) => {
-    const response = await fetch("/api/auth/demo", {
-      headers: {
-        "Content-Type": "application/json",
-      }
-    });
+    const response = await fetch("/api/auth/demo");
     
     if (response.ok){
       const data = await response.json();

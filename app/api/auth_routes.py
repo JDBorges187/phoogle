@@ -45,6 +45,20 @@ def login():
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
+@auth_routes.route('/demo',)
+def login_demo_user():
+    """
+    Logs in the demo user
+    """
+
+    # Get the csrf_token from the request cookie and put it into the
+    # form manually to validate_on_submit can be used
+    user = User.query.filter(User.email == "demo@aa.io").first()
+    print(user.to_dict())
+    login_user(user)
+    return user.to_dict()
+    # return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
 
 @auth_routes.route('/logout')
 def logout():
