@@ -3,10 +3,15 @@
     flex-wrap: wrap;
 }
 
-.photo-grid img {
+.photo-card {
     max-width: 200px;
     /* change the way */
-    height: 100%;
+    max-height: 140px;
     /* this grid looks */
     padding: 10px;
+}
+
+.photo-card img {
+    height: 100%;
+    width: 100%;
 }
