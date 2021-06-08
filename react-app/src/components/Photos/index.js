@@ -8,11 +8,27 @@ import "./PhotoGrid.css"
 
 function PhotoGrid() {
     const photos = useSelector(state => state.photos)
+    const [selected, setSelected] = useState([])
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getPhotos())
     }, [dispatch])
+
+    const onDelete = (id) => {
+        console.log(`Delete(${id})`)
+    }
+
+    const onselect = (id) => {
+        // console.log(`Select(${id})`)
+        if (selected.includes(id)) {
+            setSelected(selected.filter(e => e != id))
+        } else {
+            setSelected([...selected, id])
+        }
+    }
+
+
 
     if (!photos) return (
         <h1>Loading...</h1>
@@ -22,10 +38,19 @@ function PhotoGrid() {
         <div className="main-photos">
             <PhotoForm />
             <h1>Photos</h1>
+            <p>{`${selected.length} Photos Selected`}</p>
+            {!!selected.length && <button className="album-btn">Add to Album</button>}
             <div className="photo-grid">
                 {Object.values(photos).map((photo, i) => {
                     return (
-                        <img key={i} src={photo.photoUrl} />
+                        <div key={i} className="photo-card">
+                            <img className={selected.includes(photo.id) ? "selected" : ""}
+                                src={photo.photoUrl} />
+                            <div className="photo-btns">
+                                <button onClick={() => onselect(photo.id)}>Select</button>
+                                <button onClick={() => onDelete(photo.id)}>Delete</button>
+                            </div>
+                        </div>
                     )
                 })}
             </div>
