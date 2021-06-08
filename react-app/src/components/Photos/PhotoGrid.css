@@ -9,6 +9,11 @@
     max-height: 140px;
     /* this grid looks */
     padding: 10px;
+    margin: 10px 0;
+}
+
+.selected {
+    border: 2px solid blue;
 }
 
 .photo-card img {
