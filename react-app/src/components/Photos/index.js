@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPhotos } from "../../store/photos";
+import AlbumForm from "../Albums/AlbumForm";
 import PhotoForm from "./PhotoForm";
 import "./PhotoGrid.css"
 
@@ -9,6 +10,7 @@ import "./PhotoGrid.css"
 function PhotoGrid() {
     const photos = useSelector(state => state.photos)
     const [selected, setSelected] = useState([])
+    const [showAlbumForm, setShowAlbumForm] = useState(false)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -28,6 +30,10 @@ function PhotoGrid() {
         }
     }
 
+    const onAddToAlbum = () => {
+        setShowAlbumForm(true)
+    }
+
 
 
     if (!photos) return (
@@ -39,7 +45,11 @@ function PhotoGrid() {
             <PhotoForm />
             <h1>Photos</h1>
             <p>{`${selected.length} Photos Selected`}</p>
-            {!!selected.length && <button className="album-btn">Add to Album</button>}
+            {!!selected.length &&
+                <button
+                    onClick={() => onAddToAlbum()}
+                    className="album-btn">Add to Album</button>}
+            {showAlbumForm && <AlbumForm />}
             <div className="photo-grid">
                 {Object.values(photos).map((photo, i) => {
                     return (
