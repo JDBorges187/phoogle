@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { getAlbums } from "../../store/albums";
+import "./Albums.css"
 
 
 function AlbumsList() {
@@ -12,17 +13,21 @@ function AlbumsList() {
     }, [dispatch])
 
     if (!Object.keys(albums).length) return (
-        <h1>Loading...</h1>
+        <h1>Albums</h1>
     )
 
     return (
-        <div>
+        <div className="albums-main">
             <h1>Albums</h1>
-            {Object.values(albums).map((album,i)=>{
-                return (
-                    <div key={i} className="album-cover">{album.name}</div>
-                )
-            })}
+            <div className="album-cards">
+                {Object.values(albums).map((album, i) => {
+                    return (
+                        <div key={i}
+                            style={{ backgroundImage: `url(${album.coverPhoto.photoUrl})` }}
+                            className="album-cover">{album.name}</div>
+                    )
+                })}
+            </div>
         </div>
     )
 }
