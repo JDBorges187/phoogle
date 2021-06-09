@@ -16,6 +16,10 @@ class Album(db.Model):
     owner = db.relationship("User", back_populates="albums")
     photos = db.relationship("Photo",
                              secondary=album_photos)
+
+    @property
+    def last_photo(self):
+        return self.photos[-1]
     # photos = db.relationship("Photo",
     #                          secondary="AlbumPhoto",
     #                          primaryjoin="albums.id == albumphotos.album_id",
@@ -33,4 +37,5 @@ class Album(db.Model):
             "id": self.id,
             "name": self.name,
             "ownerId": self.owner_id,
+            "coverPhoto": self.last_photo.to_dict()
         }
