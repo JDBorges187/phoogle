@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 
-const AlbumForm = ({ albums }) => {
+const AlbumForm = ({
+  albums, 
+  selected, 
+  setSelected,
+setShowAlbumForm }) => {
   const [errors, setErrors] = useState([]);
   const [albumId, setAlbumId] = useState(-1)
   const [albumName, setAlbumName] = useState("");
@@ -11,6 +15,16 @@ const AlbumForm = ({ albums }) => {
 
   const onAlbumCreate = async (e) => {
     e.preventDefault();
+    if (!albumName) {
+      // dispatch(addToAlbum({albumId, selected}))
+      console.log("added to " + albums[albumId])
+    } else {
+      // dispatch(createAlbum({albumName, selected}))
+      console.log("created "+ albumName)
+    }
+    setAlbumName('')
+    setSelected([])
+    setShowAlbumForm(false)
     // const data = await dispatch(uploadPhoto(albumName));
     // if (data.errors) {
     //   setErrors(data.errors);

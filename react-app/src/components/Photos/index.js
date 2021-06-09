@@ -53,7 +53,13 @@ function PhotoGrid() {
                 <button
                     onClick={() => onAddToAlbum()}
                     className="album-btn">Add to Album</button>}
-            {showAlbumForm && <AlbumForm albums={albums}/>}
+            {showAlbumForm && 
+                <AlbumForm 
+                albums={albums}
+                selected={selected}
+                setSelected={setSelected}
+                setShowAlbumForm={setShowAlbumForm}
+                />}
             <div className="photo-grid">
                 {Object.values(photos).map((photo, i) => {
                     return (
