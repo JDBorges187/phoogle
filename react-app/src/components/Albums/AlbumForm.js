@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 
-const AlbumForm = () => {
+const AlbumForm = ({ albums }) => {
   const [errors, setErrors] = useState([]);
+  const [albumId, setAlbumId] = useState(-1)
   const [albumName, setAlbumName] = useState("");
   // const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
@@ -18,7 +19,11 @@ const AlbumForm = () => {
 
   const updateAlbumName = (e) => {
     setAlbumName(e.target.value);
-  }; 
+  };
+
+  const handleAlbumId = (e) => {
+    setAlbumId(e.target.value)
+  }
 
   return (
     <form onSubmit={onAlbumCreate}>
@@ -28,16 +33,33 @@ const AlbumForm = () => {
         ))}
       </div>
       <div>
-        <label htmlFor="albumName">Album Name</label>
-        <input
-          name="albumName"
-          type="text"
-          placeholder="Album Name"
-          value={albumName}
-          onChange={updateAlbumName}
-        />
+        <label htmlFor="albumId">Add To</label>
+        <select name="albumId" value={albumId} onChange={handleAlbumId}>
+          <option key="-1" default value={-1}>Select an Album</option>
+          <option key="0" value={0}>Create New Album</option>
+          {!!Object.keys(albums).length &&
+            Object.values(albums).map(album => {
+              return (
+                <option key={album.id}
+                  value={album.id}
+                >{album.name}</option>
+              )
+            })}
+        </select>
       </div>
-      <button type="submit">Create</button>
+      {albumId == 0 &&
+        <div>
+          <label htmlFor="albumName">Album Name</label>
+          <input
+            name="albumName"
+            type="text"
+            placeholder="Album Name"
+            value={albumName}
+            onChange={updateAlbumName}
+          />
+        </div>
+      }
+      <button type="submit">Add</button>
     </form>
   );
 };
