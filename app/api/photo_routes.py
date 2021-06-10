@@ -45,7 +45,7 @@ def upload_photo():
 
     if not allowed_file(photo.filename):
         return {"errors": "file type not permitted"}, 400
-    
+
     photo.filename = get_unique_filename(photo.filename)
 
     upload = upload_file_to_s3(photo)
@@ -61,18 +61,17 @@ def upload_photo():
     new_photo = Photo(owner=current_user, photo_url=url)
     db.session.add(new_photo)
     db.session.commit()
-    return {"photo": new_photo.to_dict()}
+    return {"photo": {new_photo.id: new_photo.to_dict()}}
 
 
-@photo_routes.route('/<id>', methods=['DELETE'])
-@login_required
+@ photo_routes.route('/<id>', methods=['DELETE'])
+@ login_required
 def delete_photo(id):
     if current_user.is_authenticated:
-        photo=Photo.query.get(id)
+        photo = Photo.query.get(id)
         if current_user == photo.owner:
             db.session.delete(photo)
             db.session.commit()
             return {'photo': photo.to_dict()}
         return {'errors': 'You cannot delete tnis photo'}
     return {'errors': 'You must be logged in to delete photos'}
-    

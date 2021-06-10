@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import {useDispatch} from 'react-redux'
 
-import {addPhoto} from "../../store/photos"
+import {afterUpload} from "../../store/photos"
 
 
 const PhotoUpload = () => {
@@ -26,9 +26,9 @@ const PhotoUpload = () => {
             body: formData,
         });
         if (res.ok) {
-            const data = await res.json();
+            const photo = await res.json();
             setImageLoading(false);
-            // dispatch(addPhoto(data))
+            dispatch(afterUpload(photo))
             history.push("/");
         }
         else {
