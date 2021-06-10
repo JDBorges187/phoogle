@@ -1,7 +1,7 @@
 // components/Photos/index.js
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPhotos } from "../../store/photos";
+import { getPhotos, deletePhoto } from "../../store/photos";
 import { getAlbums } from "../../store/albums"
 import AlbumForm from "../Albums/AlbumForm";
 import PhotoForm from "./PhotoForm";
@@ -21,6 +21,7 @@ function PhotoGrid() {
     }, [dispatch])
 
     const onDelete = (id) => {
+        dispatch(deletePhoto(id))
         console.log(`Delete(${id})`)
     }
 

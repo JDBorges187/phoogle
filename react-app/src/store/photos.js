@@ -20,8 +20,9 @@ export const removePhoto = (photo) => ({
 })
 
 
-
 //thunks
+
+//READ
 export const getPhotos = () => async (dispatch) => {
     const res = await fetch("/api/photos/")
     console.log(res)
@@ -32,6 +33,7 @@ export const getPhotos = () => async (dispatch) => {
     }
 }
 
+//CREATE
 export const uploadPhoto = (photoUrl) => async (dispatch) => {
     const res = await fetch("/api/photos/", {
         method: 'POST',
@@ -46,6 +48,22 @@ export const uploadPhoto = (photoUrl) => async (dispatch) => {
     if (res.ok) {
         const data = await res.json()
         dispatch(addPhoto(data))
+    }
+
+}
+
+//DELETE
+export const deletePhoto = (photoId) => async (dispatch) => {
+    const res = await fetch("/api/photos/"+photoId, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+
+    if (res.ok) {
+        const photo = await res.json()
+        dispatch(removePhoto(photo))
     }
 
 }
