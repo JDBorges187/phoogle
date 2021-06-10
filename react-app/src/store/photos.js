@@ -52,6 +52,11 @@ export const uploadPhoto = (photoUrl) => async (dispatch) => {
 
 }
 
+//to fix bug where after upload three empty divs get added to photos
+export const afterUpload = (photo) => dispatch => {
+    dispatch(addPhoto(photo))
+}
+
 //DELETE
 export const deletePhoto = (photoId) => async (dispatch) => {
     const res = await fetch("/api/photos/"+photoId, {
