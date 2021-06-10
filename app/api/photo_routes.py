@@ -72,7 +72,7 @@ def delete_photo(id):
         if current_user == photo.owner:
             db.session.delete(photo)
             db.session.commit()
-            return photo.to_dict()
+            return {'photo': photo.to_dict()}
         return {'errors': 'You cannot delete tnis photo'}
     return {'errors': 'You must be logged in to delete photos'}
     

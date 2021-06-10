@@ -83,6 +83,10 @@ export default (state = initialState, { type, payload }) => {
             return { ...state, ...payload.photos }
         case ADD_PHOTO:
             return { ...state, ...payload.photo }
+        case REMOVE_PHOTO:
+            const newState = {...state}
+            delete newState[payload.photo.id]
+            return newState
 
         default:
             return state
