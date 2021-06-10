@@ -1,11 +1,15 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
+import {useDispatch} from 'react-redux'
+
+import {addPhoto} from "../../store/photos"
 
 
 const PhotoUpload = () => {
     const history = useHistory(); // so that we can redirect after the image upload is successful
     const [image, setImage] = useState(null);
     const [imageLoading, setImageLoading] = useState(false);
+    const dispatch = useDispatch()
     
     
     const handleSubmit = async (e) => {
@@ -22,8 +26,9 @@ const PhotoUpload = () => {
             body: formData,
         });
         if (res.ok) {
-            await res.json();
+            const data = await res.json();
             setImageLoading(false);
+            // dispatch(addPhoto(data))
             history.push("/");
         }
         else {

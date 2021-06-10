@@ -1,6 +1,8 @@
 //constants
 const LOAD_PHOTOS = "photos/LOAD_PHOTOS"
 const ADD_PHOTO = "photos/ADD_PHOTO"
+const REMOVE_PHOTO = "photos/REMOVE_PHOTO"
+
 //actions
 export const loadPhotos = (photos) => ({
     type: LOAD_PHOTOS,
@@ -9,6 +11,11 @@ export const loadPhotos = (photos) => ({
 
 export const addPhoto = (photo) => ({
     type: ADD_PHOTO,
+    payload: photo
+})
+
+export const removePhoto = (photo) => ({
+    type: REMOVE_PHOTO,
     payload: photo
 })
 
@@ -39,9 +46,6 @@ export const uploadPhoto = (photoUrl) => async (dispatch) => {
     if (res.ok) {
         const data = await res.json()
         dispatch(addPhoto(data))
-
-
-
     }
 
 }
