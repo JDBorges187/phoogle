@@ -4,7 +4,7 @@ import DemoButton from '../auth/DemoButton';
 import LogoutButton from '../auth/LogoutButton';
 import "./NavBar.css"
 
-const NavBar = () => {
+const NavBar = ({ user }) => {
   return (
     <nav className="navbar">
       <ul>
@@ -18,22 +18,24 @@ const NavBar = () => {
             Albums
           </NavLink>
         </li>
-        <li>
+        {!user && <>
+          <li>
           <NavLink to="/login" exact={true} activeClassName="active">
-            Login
+              Login
           </NavLink>
         </li>
         <li>
           <NavLink to="/sign-up" exact={true} activeClassName="active">
-            Sign Up
+              Sign Up
           </NavLink>
         </li>
         <li>
           <DemoButton />
-        </li>
-        <li>
-          <LogoutButton />
-        </li>
+        </li></>}
+        {user &&
+          <li>
+            <LogoutButton />
+          </li>}
       </ul>
     </nav>
   );
