@@ -62,3 +62,17 @@ def upload_photo():
     db.session.add(new_photo)
     db.session.commit()
     return {"photo": new_photo.to_dict()}
+
+
+@photo_routes.route('/<id>', methods=['DELETE'])
+@login_required
+def delete_photo(id):
+    if current_user.is_authenticated:
+        photo=Photo.query.get(id)
+        if current_user == photo.owner:
+            db.session.delete(photo)
+            db.session.commit()
+            return photo.to_dict()
+        return {'errors': 'You cannot delete tnis photo'}
+    return {'errors': 'You must be logged in to delete photos'}
+    
