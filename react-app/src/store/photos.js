@@ -1,6 +1,8 @@
 //constants
 const LOAD_PHOTOS = "photos/LOAD_PHOTOS"
 const ADD_PHOTO = "photos/ADD_PHOTO"
+const REMOVE_PHOTO = "photos/REMOVE_PHOTO"
+
 //actions
 export const loadPhotos = (photos) => ({
     type: LOAD_PHOTOS,
@@ -12,9 +14,15 @@ export const addPhoto = (photo) => ({
     payload: photo
 })
 
+export const removePhoto = (photo) => ({
+    type: REMOVE_PHOTO,
+    payload: photo
+})
 
 
 //thunks
+
+//READ
 export const getPhotos = () => async (dispatch) => {
     const res = await fetch("/api/photos/")
     console.log(res)
@@ -25,6 +33,7 @@ export const getPhotos = () => async (dispatch) => {
     }
 }
 
+//CREATE
 export const uploadPhoto = (photoUrl) => async (dispatch) => {
     const res = await fetch("/api/photos/", {
         method: 'POST',
@@ -39,9 +48,22 @@ export const uploadPhoto = (photoUrl) => async (dispatch) => {
     if (res.ok) {
         const data = await res.json()
         dispatch(addPhoto(data))
+    }
 
+}
 
+//DELETE
+export const deletePhoto = (photoId) => async (dispatch) => {
+    const res = await fetch("/api/photos/"+photoId, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
 
+    if (res.ok) {
+        const photo = await res.json()
+        dispatch(removePhoto(photo))
     }
 
 }
@@ -61,6 +83,10 @@ export default (state = initialState, { type, payload }) => {
             return { ...state, ...payload.photos }
         case ADD_PHOTO:
             return { ...state, ...payload.photo }
+        case REMOVE_PHOTO:
+            const newState = {...state}
+            delete newState[payload.photo.id]
+            return newState
 
         default:
             return state
