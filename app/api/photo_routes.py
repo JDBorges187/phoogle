@@ -58,7 +58,7 @@ def upload_photo():
 
     url = upload["url"]
     # flask_login allows us to get the current user from the request
-    new_photo = Photo(owner=current_user, photoUrl=url)
+    new_photo = Photo(owner=current_user, photo_url=url)
     db.session.add(new_photo)
     db.session.commit()
     return {"photo": new_photo.to_dict()}

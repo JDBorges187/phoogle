@@ -6,6 +6,7 @@ import { getAlbums } from "../../store/albums"
 import AlbumForm from "../Albums/AlbumForm";
 import PhotoForm from "./PhotoForm";
 import "./PhotoGrid.css"
+import PhotoUpload from "./PhotoUpload";
 
 
 function PhotoGrid() {
@@ -46,7 +47,8 @@ function PhotoGrid() {
 
     return (
         <div className="main-photos">
-            <PhotoForm />
+            {false && <PhotoForm />}
+            <PhotoUpload />
             <h1>Photos</h1>
             <p>{`${selected.length} Photos Selected`}</p>
             {!!selected.length &&
