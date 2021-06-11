@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { updateAlbum } from "../../store/albums"
 
 
 const AlbumForm = ({
-  albums, 
-  selected, 
+  albums,
+  selected,
   setSelected,
-setShowAlbumForm }) => {
+  setShowAlbumForm }) => {
   const [errors, setErrors] = useState([]);
   const [albumId, setAlbumId] = useState(-1)
   const [albumName, setAlbumName] = useState("");
@@ -16,11 +17,11 @@ setShowAlbumForm }) => {
   const onAlbumCreate = async (e) => {
     e.preventDefault();
     if (!albumName) {
-      // dispatch(addToAlbum({albumId, selected}))
+      dispatch(updateAlbum({ albumId, addPhotos: selected, removePhotos: [] }))
       console.log("added to " + albums[albumId])
     } else {
       // dispatch(createAlbum({albumName, selected}))
-      console.log("created "+ albumName)
+      console.log("created " + albumName)
     }
     setAlbumName('')
     setSelected([])
