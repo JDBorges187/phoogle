@@ -17,7 +17,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -38,13 +38,16 @@ function App() {
           <SignUpForm />
         </Route>
         <ProtectedRoute path="/users" exact={true} >
-          <UsersList/>
+          <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true} >
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/albums" exact={true} >
           <AlbumsList />
+        </ProtectedRoute>
+        <ProtectedRoute path="/albums/:albumId" exact={true} >
+          <PhotoGrid />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} >
           <PhotoGrid />

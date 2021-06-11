@@ -1,4 +1,4 @@
-.albums-cards {
+.albums-holder {
     display: flex;
     width: 100%;
     height: 100vh;
@@ -17,4 +17,5 @@
     line-height: 100px;
     text-align: center;
     cursor: pointer;
+    text-decoration: none;
 }
