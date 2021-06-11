@@ -1,6 +1,5 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
-from numpy import log
 from app.models import User, Photo, db, Album
 
 
