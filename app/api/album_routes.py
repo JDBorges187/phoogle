@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
 from app.models import User, Photo, db, Album
-import numpy
+
 
 
 album_routes = Blueprint('albums', __name__)
