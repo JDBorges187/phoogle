@@ -1,6 +1,8 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
-from app.models import User, Photo, db
+from app.models import User, Photo, db, Album
+
+
 
 album_routes = Blueprint('albums', __name__)
 
@@ -19,7 +21,18 @@ def all_albums():
 
 @album_routes.route('/', methods=['POST'])
 @login_required
-def add_album(): #TODO Update for New Albums
+def add_album():  # TODO Update for New Albums
+    if current_user.is_authenticated:
+        new_album = Album(
+            name=request.json['name'],
+            owner=current_user
+        )
+        for photo_id in request.json['photos']:
+            photo=Photo.query.get(photo_id)
+            new_album.photos.append(photo)
+        db.session.add(new_album)
+        db.session.commit()
+        return {'album': {new_album.id: new_album.to_dict()}}
     # form = PhotoForm()
     # form['csrf_token'].data = request.cookies['csrf_token']
     # if form.validate_on_submit:
@@ -27,7 +40,23 @@ def add_album(): #TODO Update for New Albums
     #         owner=current_user,
     #         photo_url=form.data['photoUrl']
     #     )
-        # db.session.add(photo)
-        # db.session.commit()
-        # return {"photo": [photo.to_dict()]}
+    # db.session.add(photo)
+    # db.session.commit()
+    # return {"photo": [photo.to_dict()]}
     return {'errors': ['Unauthorized']}, 401
+
+
+@album_routes.route('/<id>', methods=['PATCH'])
+@login_required
+def update_album(id):
+    album = Album.query.get(id)
+    add_photos = request.json['addPhotos']
+    existing = [photo.id for photo in album.photos]
+    net = list(set(add_photos) - set(existing))
+    # sourch https://stackoverflow.com/a/6486467
+    for photo_id in net:
+        photo=Photo.query.get(photo_id)
+        album.photos.append(photo)
+    db.session.add(album)
+    db.session.commit()
+    return {"album": {album.id: album.to_dict()}}

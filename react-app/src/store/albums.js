@@ -1,7 +1,9 @@
 //constants
 const LOAD_ALBUMS = "albums/LOAD_ALBUMS"
 const ADD_ALBUM = "albums/ADD_ALBUM"
-    //actions
+
+
+//actions
 export const loadAlbums = (albums) => ({
     type: LOAD_ALBUMS,
     payload: albums
@@ -25,13 +27,14 @@ export const getAlbums = () => async(dispatch) => {
     }
 }
 
-export const createAlbum = (photos) => async(dispatch) => {
+export const createAlbum = (name, photos) => async(dispatch) => {
     const res = await fetch("/api/albums/", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
+            name,
             photos,
         })
     })
@@ -39,6 +42,24 @@ export const createAlbum = (photos) => async(dispatch) => {
     if (res.ok) {
         const data = await res.json()
         dispatch(addAlbum(data))
+    }
+}
+
+export const updateAlbum = ({albumId, addPhotos, removePhotos}) => async(dispatch) => {
+    const res = await fetch("/api/albums/"+albumId, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            addPhotos,
+            removePhotos
+        })
+    })
+
+    if (res.ok) {
+        const album = res.json()
+        dispatch(addAlbum(album))
     }
 }
 

@@ -20,9 +20,12 @@ function PhotoGrid() {
         dispatch(getPhotos())
     }, [dispatch])
 
-    const onDelete = (id) => {
-        dispatch(deletePhoto(id))
-        console.log(`Delete(${id})`)
+    const onDelete = async (id) => {
+        await dispatch(deletePhoto(id))
+        if (selected.includes(id)) {
+            setSelected(selected.filter(e=>e!==id))
+        }
+        // console.log(`Delete(${id})`)
     }
 
     const onselect = (id) => {
