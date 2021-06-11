@@ -1,7 +1,7 @@
 // components/Photos/index.js
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPhotos, deletePhoto, getAlbumPhotos } from "../../store/photos";
+import { getPhotos, deletePhoto, getAlbumPhotos} from "../../store/photos";
 import { getAlbums} from "../../store/albums"
 import AlbumForm from "../Albums/AlbumForm";
 import PhotoForm from "./PhotoForm";
@@ -61,7 +61,7 @@ function PhotoGrid() {
     return (
         <div className="main-photos">
             {false && <PhotoForm />}
-            <PhotoUpload />
+            {!albumId && <PhotoUpload />}
             <h1>{location.pathname === '/' ? "Photos" : location.pathname.split('/')[1]}</h1>
             <p>{`${selected.length} Photos Selected`}</p>
             {!!selected.length &&
