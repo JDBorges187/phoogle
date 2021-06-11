@@ -1,8 +1,13 @@
 // components/Photos/index.js
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPhotos, deletePhoto, getAlbumPhotos} from "../../store/photos";
-import { getAlbums} from "../../store/albums"
+import {
+    getPhotos,
+    deletePhoto,
+    getAlbumPhotos,
+    removeAllPhotos
+} from "../../store/photos";
+import { getAlbums } from "../../store/albums"
 import AlbumForm from "../Albums/AlbumForm";
 import PhotoForm from "./PhotoForm";
 import "./PhotoGrid.css"
@@ -11,7 +16,7 @@ import { useLocation, useParams } from "react-router";
 
 
 function PhotoGrid() {
-    const {albumId} = useParams()
+    const { albumId } = useParams()
     const photos = useSelector(state => state.photos)
     const albums = useSelector(state => state.albums)
     const [selected, setSelected] = useState([])
@@ -19,20 +24,31 @@ function PhotoGrid() {
     const dispatch = useDispatch()
 
     const location = useLocation()
-    console.log(albumId)
+    const pathname = location.pathname
+    // console.log(albumId)
+
+    // useEffect(() => {
+    //     return () => {
+    //         dispatch(removeAllPhotos())
+    //     }
+    // }, [])
 
     useEffect(() => {
-        if (location.pathname==='/'){
+        if (pathname === '/') {
             dispatch(getPhotos())
-        } else{
+        } else {
             dispatch(getAlbumPhotos(albumId))
         }
-    }, [dispatch])
+        // return () => {
+        //     dispatch(removeAllPhotos())
+        // }
+
+    }, [dispatch,pathname])
 
     const onDelete = async (id) => {
         await dispatch(deletePhoto(id))
         if (selected.includes(id)) {
-            setSelected(selected.filter(e=>e!==id))
+            setSelected(selected.filter(e => e !== id))
         }
         // console.log(`Delete(${id})`)
     }
@@ -52,6 +68,10 @@ function PhotoGrid() {
 
     }
 
+    const onRemoveFromAlbum = async () => {
+
+    }
+
 
 
     if (!photos) return (
@@ -63,17 +83,23 @@ function PhotoGrid() {
             {false && <PhotoForm />}
             {!albumId && <PhotoUpload />}
             <h1>{location.pathname === '/' ? "Photos" : location.pathname.split('/')[1]}</h1>
-            <p>{`${selected.length} Photos Selected`}</p>
             {!!selected.length &&
-                <button
-                    onClick={() => onAddToAlbum()}
-                    className="album-btn">Add to Album</button>}
-            {showAlbumForm && 
-                <AlbumForm 
-                albums={albums}
-                selected={selected}
-                setSelected={setSelected}
-                setShowAlbumForm={setShowAlbumForm}
+                <>
+                    <p>{`${selected.length} Photos Selected`}</p>
+                    {!albumId ? (<button
+                        onClick={() => onAddToAlbum()}
+                        className="album-btn">Add to Album</button>) : (
+                        <button
+                            onClick={() => onRemoveFromAlbum()}
+                            className="album-btn">Remove from Album</button>
+                    )}
+                </>}
+            {showAlbumForm &&
+                <AlbumForm
+                    albums={albums}
+                    selected={selected}
+                    setSelected={setSelected}
+                    setShowAlbumForm={setShowAlbumForm}
                 />}
             <div className="photo-grid">
                 {Object.values(photos).map((photo, i) => {

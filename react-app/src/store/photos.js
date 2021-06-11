@@ -62,6 +62,10 @@ export const afterUpload = (photo) => dispatch => {
     dispatch(addPhoto(photo))
 }
 
+export const removeAllPhotos = () => dispatch => {
+    dispatch(loadPhotos({photos:{}}))
+}
+
 //DELETE
 export const deletePhoto = (photoId) => async (dispatch) => {
     const res = await fetch("/api/photos/" + photoId, {
@@ -102,7 +106,7 @@ export default (state = initialState, { type, payload }) => {
     switch (type) {
 
         case LOAD_PHOTOS:
-            return { ...state, ...payload.photos }
+            return { ...payload.photos }
         case ADD_PHOTO:
             return { ...state, ...payload.photo }
         case REMOVE_PHOTO:
