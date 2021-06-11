@@ -22,6 +22,17 @@ def all_albums():
 @album_routes.route('/', methods=['POST'])
 @login_required
 def add_album():  # TODO Update for New Albums
+    if current_user.is_authenticated:
+        new_album = Album(
+            name=request.json['name'],
+            owner=current_user
+        )
+        for photo_id in request.json['photos']:
+            photo=Photo.query.get(photo_id)
+            new_album.photos.append(photo)
+        db.session.add(new_album)
+        db.session.commit()
+        return {'album': {new_album.id: new_album.to_dict()}}
     # form = PhotoForm()
     # form['csrf_token'].data = request.cookies['csrf_token']
     # if form.validate_on_submit:
@@ -43,10 +54,8 @@ def update_album(id):
     existing = [photo.id for photo in album.photos]
     net = list(set(add_photos) - set(existing))
     # sourch https://stackoverflow.com/a/6486467
-    photos = Photo.query.filter(
-        Photo.id.in_(net)
-    ).all()
-    for photo in photos:
+    for photo_id in net:
+        photo=Photo.query.get(photo_id)
         album.photos.append(photo)
     db.session.add(album)
     db.session.commit()

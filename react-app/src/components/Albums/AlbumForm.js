@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateAlbum } from "../../store/albums"
+import { useHistory } from "react-router";
+import { updateAlbum, createAlbum } from "../../store/albums"
 
 
 const AlbumForm = ({
@@ -13,15 +14,17 @@ const AlbumForm = ({
   const [albumName, setAlbumName] = useState("");
   // const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory()
 
   const onAlbumCreate = async (e) => {
     e.preventDefault();
     if (!albumName) {
       dispatch(updateAlbum({ albumId, addPhotos: selected, removePhotos: [] }))
-      console.log("added to " + albums[albumId])
+      // console.log("added to " + albums[albumId])
     } else {
-      // dispatch(createAlbum({albumName, selected}))
-      console.log("created " + albumName)
+      dispatch(createAlbum(albumName, selected))
+      history.push('/albums')
+      // console.log("created " + albumName)
     }
     setAlbumName('')
     setSelected([])
