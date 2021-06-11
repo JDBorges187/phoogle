@@ -2,6 +2,7 @@
 const LOAD_PHOTOS = "photos/LOAD_PHOTOS"
 const ADD_PHOTO = "photos/ADD_PHOTO"
 const REMOVE_PHOTO = "photos/REMOVE_PHOTO"
+const LOAD_ALBUM_PHOTOS = "photos/LOAD_ALBUM_PHOTOS"
 
 //actions
 export const loadPhotos = (photos) => ({
@@ -19,13 +20,17 @@ export const removePhoto = (photo) => ({
     payload: photo
 })
 
+export const loadAlbumPhotos = (photos) => ({
+    type: LOAD_ALBUM_PHOTOS,
+    payload: photos
+})
 
 //thunks
 
 //READ
 export const getPhotos = () => async (dispatch) => {
     const res = await fetch("/api/photos/")
-    console.log(res)
+    // console.log(res)
 
     if (res.ok) {
         const photos = await res.json()
@@ -57,9 +62,13 @@ export const afterUpload = (photo) => dispatch => {
     dispatch(addPhoto(photo))
 }
 
+export const removeAllPhotos = () => dispatch => {
+    dispatch(loadPhotos({photos:{}}))
+}
+
 //DELETE
 export const deletePhoto = (photoId) => async (dispatch) => {
-    const res = await fetch("/api/photos/"+photoId, {
+    const res = await fetch("/api/photos/" + photoId, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
@@ -71,6 +80,18 @@ export const deletePhoto = (photoId) => async (dispatch) => {
         dispatch(removePhoto(photo))
     }
 
+}
+
+//Get Album Photos
+export const getAlbumPhotos = (albumId) => async (dispatch) => {
+    const res = await fetch(`/api/albums/${albumId}/photos`)
+    // console.log(res)
+
+    if (res.ok) {
+        const photos = await res.json()
+        console.log(photos)
+        dispatch(loadAlbumPhotos(photos))
+    }
 }
 
 
@@ -85,13 +106,15 @@ export default (state = initialState, { type, payload }) => {
     switch (type) {
 
         case LOAD_PHOTOS:
-            return { ...state, ...payload.photos }
+            return { ...payload.photos }
         case ADD_PHOTO:
             return { ...state, ...payload.photo }
         case REMOVE_PHOTO:
-            const newState = {...state}
+            const newState = { ...state }
             delete newState[payload.photo.id]
             return newState
+        case LOAD_ALBUM_PHOTOS:
+            return { ...payload.photos }
 
         default:
             return state

@@ -1,5 +1,6 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
+from numpy import log
 from app.models import User, Photo, db, Album
 
 
@@ -44,6 +45,16 @@ def add_album():  # TODO Update for New Albums
     # db.session.commit()
     # return {"photo": [photo.to_dict()]}
     return {'errors': ['Unauthorized']}, 401
+
+@album_routes.route('/<id>/photos')
+@login_required
+def album_photos(id):
+    album=Album.query.get(id)
+    if album.owner == current_user:
+        photos = album.photos
+        return {"photos": {photo.id: photo.to_dict() for photo in photos}}
+    return {'errors': ['Access Denied', 'Ask owner to share it with you']}, 403
+
 
 
 @album_routes.route('/<id>', methods=['PATCH'])

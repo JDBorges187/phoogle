@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
 import { getAlbums } from "../../store/albums";
 import "./Albums.css"
 
@@ -19,12 +20,16 @@ function AlbumsList() {
     return (
         <div className="albums-main">
             <h1>Albums</h1>
-            <div className="album-cards">
+            <div className="albums-holder">
                 {Object.values(albums).map((album, i) => {
                     return (
-                        <div key={i}
+                        <Link key={i} to={`/albums/${album.id}`}
                             style={{ backgroundImage: `url(${album.coverPhoto.photoUrl})` }}
-                            className="album-cover">{album.name}</div>
+                            className="album-cover">
+                            <div className="album-title">
+                                {album.name}
+                            </div>
+                        </Link>
                     )
                 })}
             </div>
