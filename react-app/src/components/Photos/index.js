@@ -25,7 +25,7 @@ function PhotoGrid() {
         if (location.pathname==='/'){
             dispatch(getPhotos())
         } else{
-            dispatch(getAlbumPhotos())
+            dispatch(getAlbumPhotos(albumId))
         }
     }, [dispatch])
 
