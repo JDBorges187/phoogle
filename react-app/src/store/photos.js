@@ -25,7 +25,7 @@ export const removePhoto = (photo) => ({
 //READ
 export const getPhotos = () => async (dispatch) => {
     const res = await fetch("/api/photos/")
-    console.log(res)
+    // console.log(res)
 
     if (res.ok) {
         const photos = await res.json()
@@ -71,6 +71,17 @@ export const deletePhoto = (photoId) => async (dispatch) => {
         dispatch(removePhoto(photo))
     }
 
+}
+
+//Get Album Photos
+export const getAlbumPhotos = (albumId) => async(dispatch) => {
+    const res = await fetch(`/api/albums/${albumId}/photos`)
+    // console.log(res)
+
+    if (res.ok) {
+        const photos = await res.json()
+        dispatch(loadPhotos(photos))
+    }
 }
 
 

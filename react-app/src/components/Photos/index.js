@@ -1,23 +1,32 @@
 // components/Photos/index.js
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPhotos, deletePhoto } from "../../store/photos";
-import { getAlbums } from "../../store/albums"
+import { getPhotos, deletePhoto, getAlbumPhotos } from "../../store/photos";
+import { getAlbums} from "../../store/albums"
 import AlbumForm from "../Albums/AlbumForm";
 import PhotoForm from "./PhotoForm";
 import "./PhotoGrid.css"
 import PhotoUpload from "./PhotoUpload";
+import { useLocation, useParams } from "react-router";
 
 
 function PhotoGrid() {
+    const {albumId} = useParams()
     const photos = useSelector(state => state.photos)
     const albums = useSelector(state => state.albums)
     const [selected, setSelected] = useState([])
     const [showAlbumForm, setShowAlbumForm] = useState(false)
     const dispatch = useDispatch()
 
+    const location = useLocation()
+    console.log(albumId)
+
     useEffect(() => {
-        dispatch(getPhotos())
+        if (location.pathname==='/'){
+            dispatch(getPhotos())
+        } else{
+            dispatch(getAlbumPhotos())
+        }
     }, [dispatch])
 
     const onDelete = async (id) => {
@@ -53,7 +62,7 @@ function PhotoGrid() {
         <div className="main-photos">
             {false && <PhotoForm />}
             <PhotoUpload />
-            <h1>Photos</h1>
+            <h1>{location.pathname === '/' ? "Photos" : location.pathname.split('/')[1]}</h1>
             <p>{`${selected.length} Photos Selected`}</p>
             {!!selected.length &&
                 <button
