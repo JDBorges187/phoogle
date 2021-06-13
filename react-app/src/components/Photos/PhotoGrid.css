@@ -12,6 +12,14 @@
     margin: 10px 0;
 }
 
+.fullscreen {
+    position:fixed;
+    left: 0;
+    top:0;
+    height: 100vh;
+    width: auto;
+}
+
 .selected {
     border: 2px solid blue;
 }
