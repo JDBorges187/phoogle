@@ -3,14 +3,28 @@
     flex-direction: row;
     align-items: baseline;
     justify-content: space-around;
+    grid-area: navbar;
+    box-shadow: 0px 0px 10px black;
+    /* background: yellow; */
 }
 
 .navbar > ul {
     width: 100%;
     display: flex;
     justify-content: space-around;
+    line-height: 100%;
 }
 
 .navbar li {
+    list-style: none;
+}
+
+.sidebar > ul {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.sidebar li {
     list-style: none;
 }

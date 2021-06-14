@@ -18,7 +18,7 @@ function AlbumsList() {
     )
 
     return (
-        <div className="albums-main">
+        <div className="main-content">
             <h1>Albums</h1>
             <div className="albums-holder">
                 {Object.values(albums).map((album, i) => {

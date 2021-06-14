@@ -19,11 +19,12 @@ const AlbumForm = ({
   const onAlbumCreate = async (e) => {
     e.preventDefault();
     if (!albumName) {
-      dispatch(updateAlbum({ albumId, addPhotos: selected, removePhotos: [] }))
+      dispatch(updateAlbum({ albumId, addPhotos: selected }))
+      history.push('/albums/' + albumId)
       // console.log("added to " + albums[albumId])
     } else {
-      dispatch(createAlbum(albumName, selected))
-      history.push('/albums')
+      const data = await dispatch(createAlbum(albumName, selected))
+      if (!data.errors) history.push('/albums/' + data.album.id)
       // console.log("created " + albumName)
     }
     setAlbumName('')
@@ -77,7 +78,7 @@ const AlbumForm = ({
           />
         </div>
       }
-      <button type="submit">Add</button>
+      <button disabled={albumId === -1} type="submit">Add</button>
     </form>
   );
 };

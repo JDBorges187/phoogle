@@ -3,13 +3,16 @@
   }
 
 .signup-page{
+    position: absolute;
+    left: 0;
+    z-index: 100;
     width: 100%;
     height: 100vh;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
-    /* background:burlywood; */
+    background: white;
 }
 
 .signup-holder{

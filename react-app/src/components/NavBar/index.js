@@ -10,32 +10,21 @@ const NavBar = ({ user }) => {
       <ul>
         <li>
           <NavLink to="/" exact={true} activeClassName="active">
-            Photos
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/albums" exact={true} activeClassName="active">
-            Albums
+          <h1 className="logo-nav">
+            <span className="blue">P</span>
+            <span className="red">h</span>
+            <span className="yellow">o</span>
+            <span className="blue">o</span>
+            <span className="green">g</span>
+            <span className="red">l</span>
+            <span className="yellow">e</span>
+          </h1>
           </NavLink>
         </li>
         {!user && <>
-          <li>
-          <NavLink to="/login" exact={true} activeClassName="active">
-              Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/signup" exact={true} activeClassName="active">
-              Sign Up
-          </NavLink>
-        </li>
         <li>
           <DemoButton />
         </li></>}
-        {user &&
-          <li>
-            <LogoutButton />
-          </li>}
       </ul>
     </nav>
   );

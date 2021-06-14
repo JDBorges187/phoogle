@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
+import DemoButton from "./DemoButton";
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -27,7 +28,7 @@ const LoginForm = () => {
   };
 
   if (user) {
-    return <Redirect to="/" />;
+    return <Redirect to="/photos" />;
   }
 
   return (
@@ -79,6 +80,7 @@ const LoginForm = () => {
           />
           <button className="signup-btn"
           type="submit">Login</button>
+      <DemoButton />
         </div>
       </form>
     </div>
