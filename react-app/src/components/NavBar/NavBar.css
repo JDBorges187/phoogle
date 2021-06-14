@@ -18,13 +18,3 @@
 .navbar li {
     list-style: none;
 }
-
-.sidebar > ul {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-}
-
-.sidebar li {
-    list-style: none;
-}
