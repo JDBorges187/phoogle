@@ -47,9 +47,11 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/albums" exact={true} >
+          <SideBar user={user}/> 
           <AlbumsList />
         </ProtectedRoute>
         <ProtectedRoute path="/albums/:albumId" exact={true} >
+          <SideBar user={user}/> 
           <PhotoGrid />
         </ProtectedRoute>
         <ProtectedRoute path="/photos" exact={true} >
