@@ -42,6 +42,7 @@ export const createAlbum = (name, photos) => async(dispatch) => {
     if (res.ok) {
         const data = await res.json()
         dispatch(addAlbum(data))
+        return data;
     }
 }
 
