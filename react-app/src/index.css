@@ -20,7 +20,7 @@ body {
 
 .sidebar {
     grid-area: sidebar;
-    background: red;
+    /* background: red; */
     /* height: 80vh; */
 }
 

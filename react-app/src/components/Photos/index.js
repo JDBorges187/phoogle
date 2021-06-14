@@ -47,7 +47,7 @@ function PhotoGrid() {
     }, [])
 
     useEffect(() => {
-        if (pathname === '/') {
+        if (pathname === '/photos') {
             dispatch(getPhotos())
         } else {
             dispatch(getAlbumPhotos(albumId))
@@ -105,7 +105,7 @@ function PhotoGrid() {
         <div className="main-content">
             {false && <PhotoForm />}
             {!albumId && <PhotoUpload />}
-            <h1>{location.pathname === '/'
+            <h1>{location.pathname === '/photos'
                 ? "Photos"
                 : !album
                     ? null
