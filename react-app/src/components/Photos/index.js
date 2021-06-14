@@ -95,7 +95,7 @@ let album
     )
 
     return (
-        <div className="main-photos">
+        <div className="main-content">
             {false && <PhotoForm />}
             {!albumId && <PhotoUpload />}
             <h1>{location.pathname === '/' 

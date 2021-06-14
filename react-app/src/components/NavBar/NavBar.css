@@ -3,6 +3,8 @@
     flex-direction: row;
     align-items: baseline;
     justify-content: space-around;
+    grid-area: navbar;
+    background: yellow;
 }
 
 .navbar > ul {

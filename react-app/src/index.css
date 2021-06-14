@@ -3,3 +3,28 @@
     font-family: Montserrat, Arial, Sans Serif;
     box-sizing: border-box;
 }
+
+body {
+    margin: 0;
+}
+
+#root {
+    display: grid;
+    grid-template-columns: 265px auto;
+    grid-template-rows: 10% 80% 10%;
+    grid-template-areas: "navbar navbar"
+    "sidebar main"
+    "footer footer";
+    max-height: 100vh;
+}
+
+.sidebar {
+    grid-area: sidebar;
+    background: red;
+    /* height: 80vh; */
+}
+
+.main-content {
+    overflow: scroll;
+    min-height: 80vh;
+}

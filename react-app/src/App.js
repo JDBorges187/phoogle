@@ -8,6 +8,7 @@ import PhotoGrid from "./components/Photos";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import AlbumsList from "./components/Albums";
+import Footer from "./components/Footer"
 import User from "./components/User";
 import { authenticate } from "./store/session";
 
@@ -30,6 +31,7 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar user={user} />
+      <div className="sidebar"><h1>Left Bar</h1></div>
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm />
@@ -53,6 +55,7 @@ function App() {
           <PhotoGrid />
         </ProtectedRoute>
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }
