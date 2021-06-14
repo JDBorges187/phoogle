@@ -7,7 +7,7 @@ import {
     getAlbumPhotos,
     removeAllPhotos
 } from "../../store/photos";
-import { getAlbums } from "../../store/albums"
+import { getAlbums, updateAlbum } from "../../store/albums"
 import AlbumForm from "../Albums/AlbumForm";
 import PhotoForm from "./PhotoForm";
 import "./PhotoGrid.css"
@@ -20,13 +20,14 @@ function PhotoGrid() {
     const photos = useSelector(state => state.photos)
     const albums = useSelector(state => state.albums)
 
-let album
+    let album
     if (albums && albumId) {
         album = albums[albumId]
     }
     const [selected, setSelected] = useState([])
     const [showAlbumForm, setShowAlbumForm] = useState(false)
     const [displayOne, setDisplayOne] = useState(null)
+    const [errors, setErrors] = useState([])
     const dispatch = useDispatch()
 
     const location = useLocation()
@@ -34,14 +35,14 @@ let album
     // console.log(albumId)
 
     useEffect(() => {
-        document.addEventListener('keydown', (e)=>{
-            if (e.key==='Escape') setDisplayOne(null)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') setDisplayOne(null)
         })
         return () => {
-            document.removeEventListener('keydown',(e)=>{
-                if (e.key==='Escape') setDisplayOne(null)
+            document.removeEventListener('keydown', (e) => {
+                if (e.key === 'Escape') setDisplayOne(null)
             })
-    //         dispatch(removeAllPhotos())
+            //         dispatch(removeAllPhotos())
         }
     }, [])
 
@@ -56,7 +57,7 @@ let album
         //     dispatch(removeAllPhotos())
         // }
 
-    }, [dispatch,pathname])
+    }, [dispatch, pathname])
 
     const onDelete = async (id) => {
         await dispatch(deletePhoto(id))
@@ -86,7 +87,13 @@ let album
     }
 
     const onRemoveFromAlbum = async () => {
+        const data = await dispatch(updateAlbum({ albumId, removePhotos: selected }))
 
+        if (data && data.errors) {
+            setErrors(data.errors)
+        }
+        dispatch(getAlbumPhotos(albumId))
+        setSelected([])
     }
 
 
@@ -98,9 +105,9 @@ let album
         <div className="main-content">
             {false && <PhotoForm />}
             {!albumId && <PhotoUpload />}
-            <h1>{location.pathname === '/' 
-                ? "Photos" 
-                : !album 
+            <h1>{location.pathname === '/'
+                ? "Photos"
+                : !album
                     ? null
                     : album.name}</h1>
             {!!selected.length &&
@@ -124,10 +131,10 @@ let album
             <div className="photo-grid">
                 {Object.values(photos).map((photo, i) => {
                     return (
-                        <div key={photo.id}  className="photo-card">
-                            <img onClick={()=>onFullScreen(photo.id)}
-                                className={[(displayOne === photo.id?"fullscreen":""), 
-                                    (selected.includes(photo.id) ? "selected" : "")].join(" ")}
+                        <div key={photo.id} className="photo-card">
+                            <img onClick={() => onFullScreen(photo.id)}
+                                className={[(displayOne === photo.id ? "fullscreen" : ""),
+                                (selected.includes(photo.id) ? "selected" : "")].join(" ")}
                                 src={photo.photoUrl} />
                             <div className="photo-btns">
                                 <button onClick={() => onselect(photo.id)}>Select</button>

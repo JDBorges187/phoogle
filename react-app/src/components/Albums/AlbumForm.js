@@ -19,7 +19,7 @@ const AlbumForm = ({
   const onAlbumCreate = async (e) => {
     e.preventDefault();
     if (!albumName) {
-      dispatch(updateAlbum({ albumId, addPhotos: selected, removePhotos: [] }))
+      dispatch(updateAlbum({ albumId, addPhotos: selected}))
       // console.log("added to " + albums[albumId])
     } else {
       dispatch(createAlbum(albumName, selected))

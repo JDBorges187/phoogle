@@ -60,6 +60,7 @@ export const updateAlbum = ({albumId, addPhotos, removePhotos}) => async(dispatc
     if (res.ok) {
         const album = res.json()
         dispatch(addAlbum(album))
+        if (album.errors) return album
     }
 }
 
