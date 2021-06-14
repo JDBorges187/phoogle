@@ -7,20 +7,25 @@ const Footer = ({ user }) => {
         <nav className="footer">
             <ul>
                 <li>
-                    <NavLink to="/" exact={true} activeClassName="active">
+                    <a href="#">
+                        by: Jorge Borges
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/JDBorges187/">
                         Github
-                    </NavLink>
+                    </a>
                 </li>
                 <li>
-                    <NavLink to="/albums" exact={true} activeClassName="active">
+                    <a href="https://www.linkedin.com/in/jorge-engineer/">
                         LinkedIn
-                    </NavLink>
+                    </a>
                 </li>
-                <li>
+                {/* <li>
                     <NavLink to="/login" exact={true} activeClassName="active">
                         AngelList
                     </NavLink>
-                </li>
+                </li> */}
             </ul>
         </nav>
     );
