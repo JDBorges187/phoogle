@@ -113,3 +113,14 @@ input:focus::placeholder {
     left:50%;
     transform: translateX(-50%);
 }
+
+.logout-btn{
+    
+    margin-top: 20px;
+    padding: 10px 24px;
+    background-color: var(--common-blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+
+}

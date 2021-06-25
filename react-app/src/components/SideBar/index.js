@@ -9,7 +9,7 @@ const SideBar = ({ user }) => {
     <div className="sidebar">
       <ul>
         <li>
-          <NavLink to="/" exact={true} activeClassName="active">
+          <NavLink to="/photos" exact={true} activeClassName="active">
             Photos
           </NavLink>
         </li>
@@ -32,10 +32,10 @@ const SideBar = ({ user }) => {
         <li>
           <DemoButton />
         </li></>}
-        {user &&
+        {/* {user &&
           <li>
             <LogoutButton />
-          </li>}
+          </li>} */}
       </ul>
     </div>
   );

@@ -2,9 +2,29 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    align-items: center;
 }
 
 .sidebar li {
+    width: 80%;
     list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 10px 15px;
+}
+
+.sidebar a {
+    width: 180px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 20px;
+    text-align: center;
+    text-decoration: none;
+    color: #444;
+    font-weight: 600;
+}
+
+.sidebar .active {
+    background: lightblue;
+    color:white;
 }

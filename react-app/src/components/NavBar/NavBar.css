@@ -1,20 +1,32 @@
 .navbar {
     display: flex;
     flex-direction: row;
-    align-items: baseline;
-    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    min-height: 10vh;
+    justify-content: flex-start;
     grid-area: navbar;
     box-shadow: 0px 0px 10px black;
+    z-index: 50
     /* background: yellow; */
 }
 
 .navbar > ul {
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     line-height: 100%;
+}
+
+.navbar > ul li:nth-child(2) {
+    margin-right: 50px;
+    padding-bottom: 10px;
 }
 
 .navbar li {
     list-style: none;
+}
+
+.navbar a {
+    text-decoration: none;
 }

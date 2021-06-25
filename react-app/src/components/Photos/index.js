@@ -137,8 +137,12 @@ function PhotoGrid() {
                                 (selected.includes(photo.id) ? "selected" : "")].join(" ")}
                                 src={photo.photoUrl} />
                             <div className="photo-btns">
-                                <button onClick={() => onselect(photo.id)}>Select</button>
-                                <button onClick={() => onDelete(photo.id)}>Delete</button>
+                                <button onClick={() => onselect(photo.id)}>
+                                <i className="fa fa-check" aria-hidden="true"></i>
+                                </button>
+                                {!album && <button onClick={() => onDelete(photo.id)}>
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>}
                             </div>
                         </div>
                     )

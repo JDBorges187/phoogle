@@ -5,6 +5,7 @@ import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar/index";
 import SideBar from "./components/SideBar"
+import SplashPage from "./components/Splash";
 import PhotoGrid from "./components/Photos";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
@@ -34,6 +35,9 @@ function App() {
       <NavBar user={user} />
       {/* <div className="sidebar"><h1>Left Bar</h1></div> */}
       <Switch>
+        <Route path="/" exact={true}>
+          <SplashPage user={user}/>
+        </Route>
         <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
@@ -59,7 +63,7 @@ function App() {
           <PhotoGrid />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} >
-        <Redirect to="/photos" />
+          <Redirect to="/photos" />
         </ProtectedRoute>
 
       </Switch>

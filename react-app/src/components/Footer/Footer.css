@@ -1,5 +1,6 @@
 .footer {
     grid-area: footer;
+    z-index: 50;
 }
 
 .footer > ul {
@@ -8,6 +9,7 @@
     display: flex;
     background: lightblue;
     line-height: 10vh;
+    height: 10vh;
     min-height: 40px;
     display: flex;
     justify-content: space-evenly;
