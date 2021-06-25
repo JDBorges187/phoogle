@@ -34,6 +34,12 @@ function App() {
       <NavBar user={user} />
       {/* <div className="sidebar"><h1>Left Bar</h1></div> */}
       <Switch>
+        <Route path="/" exact={true}>
+          <div className="main-content">
+
+          <h1>Welcome Home!</h1>
+          </div>
+        </Route>
         <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
@@ -59,7 +65,7 @@ function App() {
           <PhotoGrid />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} >
-        <Redirect to="/photos" />
+          <Redirect to="/photos" />
         </ProtectedRoute>
 
       </Switch>

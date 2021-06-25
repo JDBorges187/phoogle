@@ -1,8 +1,10 @@
 .navbar {
     display: flex;
     flex-direction: row;
-    align-items: baseline;
-    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    min-height: 10vh;
+    justify-content: flex-start;
     grid-area: navbar;
     box-shadow: 0px 0px 10px black;
     /* background: yellow; */
@@ -11,10 +13,14 @@
 .navbar > ul {
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     line-height: 100%;
 }
 
 .navbar li {
     list-style: none;
+}
+
+.navbar a {
+    text-decoration: none;
 }
