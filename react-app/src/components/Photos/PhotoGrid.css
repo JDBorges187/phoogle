@@ -26,9 +26,14 @@
 .photo-btns button {
     margin: 0 10px;
     border-radius: 50%;
+    border-style: none;
     padding: 3px;
     background: rgba(0,0,0,.4);
-    color: blue;
+    color: white;
+}
+
+.photo-btns :hover {
+    transform: scale(1.12);
 }
 
 .fullscreen {
@@ -37,6 +42,7 @@
     top:0;
     height: 100vh;
     width: auto;
+    z-index: 100;
 }
 
 .selected {
