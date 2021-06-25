@@ -14,8 +14,13 @@
 .navbar > ul {
     width: 100%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     line-height: 100%;
+}
+
+.navbar > ul li:nth-child(2) {
+    margin-right: 50px;
+    padding-bottom: 10px;
 }
 
 .navbar li {

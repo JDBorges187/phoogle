@@ -12,3 +12,19 @@
     justify-content: center;
     padding: 10px 15px;
 }
+
+.sidebar a {
+    width: 180px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 20px;
+    text-align: center;
+    text-decoration: none;
+    color: #444;
+    font-weight: 600;
+}
+
+.sidebar .active {
+    background: lightblue;
+    color:white;
+}

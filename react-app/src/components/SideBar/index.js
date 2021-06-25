@@ -32,10 +32,10 @@ const SideBar = ({ user }) => {
         <li>
           <DemoButton />
         </li></>}
-        {user &&
+        {/* {user &&
           <li>
             <LogoutButton />
-          </li>}
+          </li>} */}
       </ul>
     </div>
   );

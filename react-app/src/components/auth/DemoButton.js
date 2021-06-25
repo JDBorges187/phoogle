@@ -8,7 +8,7 @@ const DemoButton = () => {
     dispatch(loginDemoUser());
   };
 
-  return <button className="signup-btn" style={{left: "60%"}}
+  return <button className="logout-btn" style={{left: "auto"}}
   onClick={onDemoButton}>Demo</button>;
 };
 

@@ -21,10 +21,16 @@ const NavBar = ({ user }) => {
           </h1>
           </NavLink>
         </li>
-        {!user && <>
+        {(!user) ? (
         <li>
           <DemoButton />
-        </li></>}
+        </li>
+        ) 
+        :(
+          <li>
+          <LogoutButton />
+        </li>
+        )}
       </ul>
     </nav>
   );
