@@ -33,11 +33,16 @@
     padding: 25px;
 }
 
+.form-header a{
+    text-decoration: none;
+}
+
 .logo{
     font-weight: 500;
     font-size: 26px;
     padding-top: 25px;
     letter-spacing: .2px;
+    
 }
 
 .blue {
@@ -112,6 +117,7 @@ input:focus::placeholder {
     position: relative;
     left:50%;
     transform: translateX(-50%);
+    cursor: pointer;
 }
 
 .logout-btn{
@@ -122,5 +128,6 @@ input:focus::placeholder {
     color: white;
     border: none;
     border-radius: 8px;
+    cursor: pointer;
 
 }
