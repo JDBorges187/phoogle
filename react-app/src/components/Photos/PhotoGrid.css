@@ -30,6 +30,7 @@
     padding: 3px;
     background: rgba(0,0,0,.4);
     color: white;
+    cursor: pointer;
 }
 
 .photo-btns :hover {
