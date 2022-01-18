@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
 import DemoButton from "./DemoButton";
+import { NavLink } from "react-router-dom";
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -36,6 +37,7 @@ const LoginForm = () => {
 
       <div className="signup-holder">
         <div className="form-header">
+        <NavLink to="/" exact={true} activeClassName="active">
           <h1 className="logo">
             <span className="blue">P</span>
             <span className="red">h</span>
@@ -45,6 +47,16 @@ const LoginForm = () => {
             <span className="red">l</span>
             <span className="yellow">e</span>
           </h1>
+          </NavLink>
+          {/* <h1 className="logo">
+            <span className="blue">P</span>
+            <span className="red">h</span>
+            <span className="yellow">o</span>
+            <span className="blue">o</span>
+            <span className="green">g</span>
+            <span className="red">l</span>
+            <span className="yellow">e</span>
+          </h1> */}
           <h2 className="form-heading">Sign in</h2>
           <p className="form-text">to continue to Phoogle Photos</p>
         </div>
@@ -82,7 +94,9 @@ const LoginForm = () => {
               type="submit">Login</button>
             <DemoButton />
           </div>
+          {/* <p>Not a user? Click here to Sign Up.</p> */}
         </form>
+        
       </div>
     </div>
   );
