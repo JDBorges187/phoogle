@@ -6,7 +6,7 @@ Phoogle is a [Google Photos](https://photos.google.com/) clone. With potential f
 
 ### Back End
 Phoogle was built using Flask for the server with a postgreSQL database. The back end structure utilizes RESTful convention and handles user requests through our 
-[API](https://github.com/facebook/react/wiki/api-documentation) and uses JSON and redux to update the front end. Phoogle uses the Flask-Workzeug module for to safely store user passwords and verify login credentials. 
+[API](https://github.com/facebook/react/wiki/api-documentation) and uses JSON and redux to update the front end. Phoogle uses the Flask-Workzeug module to safely store user passwords and verify login credentials. 
 ### Front End
 The front end was built using React Components to render the pages with JavaScript and Redux to store state and make the pages dynamic. All styles are Vanilla CSS
 ### List of Technologies
@@ -24,7 +24,7 @@ The front end was built using React Components to render the pages with JavaScri
 * Add / Remvoe Photos from Album
 * Sign up/Login/ Demo User
 
-### Future Addiostions
+### Future Additions
 * Implement Favorites for Photos
 * Allow sharing of Albums and photos
 * Dockerfile implementation of [minio](https://github.com/minio/minio)
