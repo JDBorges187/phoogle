@@ -20,3 +20,8 @@
     cursor: pointer;
     text-decoration: none;
 }
+
+.album-title {
+    color: blueviolet;
+    /* implement text aligned to bottom left and add a black gradient from the bottom up */
+}
